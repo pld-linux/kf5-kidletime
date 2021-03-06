@@ -1,15 +1,15 @@
-%define		kdeframever	5.67
+%define		kdeframever	5.79
 %define		qtver		5.9.0
 %define		kfname		kidletime
 
 Summary:	Reporting of idle time of user and system
 Name:		kf5-%{kfname}
-Version:	5.67.0
+Version:	5.79.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	8049864248f5ab73af529140a10b0386
+# Source0-md5:	e6523c6192b0a1247deb4df16490eb3e
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -77,6 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
+%{_datadir}/qlogging-categories5/kidletime.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
