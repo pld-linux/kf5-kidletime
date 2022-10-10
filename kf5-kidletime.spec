@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.98
+%define		kdeframever	5.99
 %define		qtver		5.15.2
 %define		kfname		kidletime
 
 Summary:	Reporting of idle time of user and system
 Name:		kf5-%{kfname}
-Version:	5.98.0
+Version:	5.99.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	7fabf060db1fc44dadb21be56e0c0cf3
+# Source0-md5:	46a7681f2cbf7ec308be1681480eed16
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -22,6 +22,7 @@ BuildRequires:	Qt5Widgets-devel >= %{qtver}
 BuildRequires:	Qt5X11Extras-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
+BuildRequires:	kf5-kwayland-devel >= %{version}
 BuildRequires:	ninja
 BuildRequires:	qt5-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
@@ -85,8 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libKF5IdleTime.so.5
 %attr(755,root,root) %{_libdir}/libKF5IdleTime.so.*.*
 %dir %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
+%{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeWaylandPlugin.so
+%{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
+%{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 %{_datadir}/qlogging-categories5/kidletime.renamecategories
 
 %files devel
