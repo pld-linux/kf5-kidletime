@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.103
+%define		kdeframever	5.104
 %define		qtver		5.15.2
 %define		kfname		kidletime
 
 Summary:	Reporting of idle time of user and system
 Name:		kf5-%{kfname}
-Version:	5.103.0
+Version:	5.104.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	d4f38229dd9d49a043ab630eb9a9a302
+# Source0-md5:	27831c740f7581eee86aba193e352d4f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
