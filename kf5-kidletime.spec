@@ -1,29 +1,30 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.249.0
+%define		kdeframever	5.114
 %define		qtver		5.15.2
 %define		kfname		kidletime
 
 Summary:	Reporting of idle time of user and system
 Name:		kf5-%{kfname}
-Version:	5.249.0
-Release:	0.1
+Version:	5.114.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/unstable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	7b85e8e286ecee9f4943937d319d8975
+Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
+# Source0-md5:	74723ae0bb29ca2329cc175b4f3d67ae
 URL:		http://www.kde.org/
-BuildRequires:	Qt6Core-devel >= %{qtver}
-BuildRequires:	Qt6DBus-devel >= %{qtver}
-BuildRequires:	Qt6Gui-devel >= %{qtver}
-BuildRequires:	Qt6Test-devel >= %{qtver}
-BuildRequires:	Qt6WaylandClient-devel
-BuildRequires:	Qt6Widgets-devel >= %{qtver}
+BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5DBus-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= %{qtver}
+BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt5Widgets-devel >= %{qtver}
+BuildRequires:	Qt5X11Extras-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
+BuildRequires:	kf5-kwayland-devel >= %{version}
 BuildRequires:	ninja
-BuildRequires:	qt6-linguist >= %{qtver}
+BuildRequires:	qt5-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libXScrnSaver-devel
@@ -31,7 +32,7 @@ BuildRequires:	xz
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt6dir		%{_libdir}/qt6
+%define		qt5dir		%{_libdir}/qt5
 
 %description
 KIdleTime is a singleton reporting information on idle time. It is
@@ -80,17 +81,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md
-%{_datadir}/qlogging-categories6/kidletime.categories
-%ghost %{_libdir}/libKF6IdleTime.so.6
-%attr(755,root,root) %{_libdir}/libKF6IdleTime.so.*.*
-%dir %{_libdir}/qt6/plugins/kf6/org.kde.kidletime.platforms
-%{_libdir}/qt6/plugins/kf6/org.kde.kidletime.platforms/KF6IdleTimeWaylandPlugin.so
-%{_libdir}/qt6/plugins/kf6/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin0.so
-%{_libdir}/qt6/plugins/kf6/org.kde.kidletime.platforms/KF6IdleTimeXcbPlugin1.so
-%{_datadir}/qlogging-categories6/kidletime.renamecategories
+%{_datadir}/qlogging-categories5/kidletime.categories
+%ghost %{_libdir}/libKF5IdleTime.so.5
+%attr(755,root,root) %{_libdir}/libKF5IdleTime.so.*.*
+%dir %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms
+%{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeWaylandPlugin.so
+%{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
+%{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
+%{_datadir}/qlogging-categories5/kidletime.renamecategories
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF6/KIdleTime
-%{_libdir}/cmake/KF6IdleTime
-%{_libdir}/libKF6IdleTime.so
+%{_includedir}/KF5/KIdleTime
+%{_libdir}/cmake/KF5IdleTime
+%{_libdir}/libKF5IdleTime.so
+%{qt5dir}/mkspecs/modules/qt_KIdleTime.pri
